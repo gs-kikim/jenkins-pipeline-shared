@@ -9,7 +9,7 @@ class Checkout implements Serializable {
     }
 
     def run(svn) {
-        checkout([$class              : 'SubversionSCM',
+        def checkout([$class              : 'SubversionSCM',
                   filterChangelog     : false,
                   ignoreDirPropChanges: false,
                   locations           : [[cancelProcessOnExternalsFail: true,
