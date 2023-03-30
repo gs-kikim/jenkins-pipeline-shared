@@ -1,5 +1,9 @@
 package org.test
+
+
 import hudson.scm.SubversionSCM
+import hudson.scm.SubversionSCM.ModuleLocation
+
 
 class Checkout implements Serializable {
 
@@ -9,17 +13,10 @@ class Checkout implements Serializable {
 
     }
 
-    def run(String scmUrl) {
-        checkout([$class              : 'SubversionSCM',
-                  filterChangelog     : false,
-                  ignoreDirPropChanges: false,
-                  locations           : [[cancelProcessOnExternalsFail: true,
-                                          credentialsId               : 'db00ff19-5b9a-4603-a174-ac8a5ae664b8',
-                                          depthOption                 : 'infinity',
-                                          ignoreExternalsOption       : true,
-                                          local                       : '.',
-                                          remote                      : [[url: scmUrl]],
-                  quietOperation      : true, workspaceUpdater: [$class: 'UpdateUpdater']])
+    def call(String scmUrl, String branch, String checkoutDir) {
+        checkout(new SubversionSCM([
+                new ModuleLocation(scmUrl, branch, null, null, true)
+        ]), checkoutDir)
     }
 
 }
