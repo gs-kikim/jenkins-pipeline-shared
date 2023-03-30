@@ -100,3 +100,5 @@ def do_test(tag) {
         }
     }
 }
+
+return this
