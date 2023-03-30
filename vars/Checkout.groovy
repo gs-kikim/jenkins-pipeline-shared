@@ -8,7 +8,7 @@ class Checkout implements Serializable {
 
     }
 
-    def checkout(String svn) {
+    def checkout(svn) {
         checkout([$class              : 'SubversionSCM',
                   filterChangelog     : false,
                   ignoreDirPropChanges: false,
@@ -17,7 +17,7 @@ class Checkout implements Serializable {
                                           depthOption                 : 'infinity',
                                           ignoreExternalsOption       : true,
                                           local                       : '.',
-                                          remote                      : svn]],
+                                          remote                      : "$svn"]],
                   quietOperation      : true, workspaceUpdater: [$class: 'UpdateUpdater']])
     }
 
